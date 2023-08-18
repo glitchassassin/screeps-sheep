@@ -1,3 +1,9 @@
+declare global {
+  interface CreepMemory {
+    room: string;
+  }
+}
+
 export function spawn() {
   for (const spawn in Game.spawns) {
     Game.spawns[spawn].spawnCreep(

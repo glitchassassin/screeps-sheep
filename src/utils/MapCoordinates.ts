@@ -89,6 +89,16 @@ export const isSourceKeeperRoom = (roomName: string) => {
   // return !(fmod === 5 && smod === 5) && (fmod >= 4 && fmod <= 6) && (smod >= 4 && smod <= 6);
   return fmod >= 4 && fmod <= 6 && smod >= 4 && smod <= 6;
 };
+export function lookForNear(pos: RoomPosition, range = 1, lookFor: LookConstant) {
+    return Game.rooms[pos.roomName].lookForAtArea(
+      lookFor,
+      Math.max(1, Math.min(49, pos.y - range)),
+      Math.max(1, Math.min(49, pos.x - range)),
+      Math.max(1, Math.min(49, pos.y + range)),
+      Math.max(1, Math.min(49, pos.x + range)),
+      true
+    );
+}
 export function lookNear(pos: RoomPosition, range = 1) {
   return Game.rooms[pos.roomName].lookAtArea(
     Math.max(1, Math.min(49, pos.y - range)),
