@@ -23,7 +23,6 @@ export function harvest(creep: Creep) {
         .map(s => s.pos)
     );
     if (!closestSource) {
-      console.log("No source found");
       assignedSources.delete(creep.name);
       return "explore";
     }
