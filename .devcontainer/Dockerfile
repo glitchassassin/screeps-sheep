@@ -1,4 +1,3 @@
-FROM node:12-alpine
+FROM mcr.microsoft.com/devcontainers/typescript-node:14-bullseye
 
-RUN apk add --update --no-cache git ca-certificates openssl openssh
 RUN npm install -g rollup

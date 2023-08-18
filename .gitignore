@@ -17,6 +17,8 @@
 
 # Screeps Config
 screeps.json
+config.yml
+.env
 
 # ScreepsServer data from integration tests
 /server
