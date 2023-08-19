@@ -1,4 +1,5 @@
 import { sheep } from "roles/sheep";
+import { scoreSheep } from "score/scoreSheep";
 import { structures } from "structures";
 import "ts-polyfill/lib/es2019-array";
 import { ErrorMapper } from "utils/ErrorMapper";
@@ -22,4 +23,6 @@ export const loop = ErrorMapper.wrapLoop(() => {
       console.log(e, (e as any).stack);
     }
   }
+
+  scoreSheep();
 });
