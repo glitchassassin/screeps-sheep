@@ -1,13 +1,15 @@
 import { getCachedSourcesPositions, getSourceByCachedPos } from "structures/sources";
 import { adjacentWalkablePositions, findClosestByPath } from "utils/MapCoordinates";
 import { costCallback } from "./costCallback";
+import { moveTo } from "./moveTo";
 
 const assignedSources = new Map<string, RoomPosition>();
 
 export function harvest(creep: Creep) {
   if (creep.store.getFreeCapacity(RESOURCE_ENERGY) === 0) {
     assignedSources.delete(creep.name);
-    return Math.random() > 0.9 ? "transfer" : "upgrade";
+    const energy = Game.rooms[creep.memory.room].energyAvailable / Game.rooms[creep.memory.room].energyCapacityAvailable;
+    return Math.random() < (1 - energy) * 0.2 + 0.8 ? "transfer" : "upgrade";
   }
   let assignedSource = assignedSources.get(creep.name);
   if (!assignedSource) {
@@ -30,7 +32,7 @@ export function harvest(creep: Creep) {
     assignedSources.set(creep.name, assignedSource);
   }
 
-  if (Game.time % 2 === 0) creep.moveTo(assignedSource, { costCallback });
+  moveTo(creep, assignedSource, { costCallback })
 
   const source = getSourceByCachedPos(assignedSource);
   if (source) creep.harvest(source);

@@ -1,5 +1,6 @@
 import { getExploreRooms } from "utils/exploreRooms";
 import { costCallback } from "./costCallback";
+import { moveTo } from "./moveTo";
 
 const exploreTargets = new Map<string, string>();
 const skipExploreTargets = new Set<string>();
@@ -12,7 +13,7 @@ export function explore(creep: Creep) {
   if (!exploreTarget || Game.rooms[exploreTarget]) {
     return "harvest";
   }
-  if (Game.time % 2 === 0 && creep.moveTo(new RoomPosition(25, 25, exploreTarget), { range: 20, costCallback }) === ERR_NO_PATH) {
+  if (moveTo(creep, new RoomPosition(25, 25, exploreTarget), { range: 20, costCallback }) === ERR_NO_PATH) {
     skipExploreTargets.add(exploreTarget);
   }
   return "explore";

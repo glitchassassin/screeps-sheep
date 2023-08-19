@@ -1,4 +1,5 @@
 import { costCallback } from "./costCallback";
+import { moveTo } from "./moveTo";
 
 const assignedSpawns = new Map<string, string>();
 
@@ -29,7 +30,7 @@ export function transfer(creep: Creep) {
     return "transfer";
   }
   if (creep.transfer(spawn, RESOURCE_ENERGY) === ERR_NOT_IN_RANGE) {
-    if (Game.time % 2 === 0) creep.moveTo(spawn, { costCallback });
+    moveTo(creep, spawn, { costCallback });
   }
   return "transfer";
 }
