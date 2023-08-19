@@ -5,5 +5,5 @@ Screeps Sheep is an NPC bot that provides alternative ways to score! The Sheep w
 ## TODO
 
 - [x] Implement sheep fleeing behavior
-- [ ] Handle fleeing at room edges
+- [x] Handle fleeing at room edges
 - [ ] Report player scores
